@@ -46,3 +46,75 @@ To add css to a page/component, simply include a `<style>` tag in the page.
 You can import stylesheets directly into components, pages and layouts. Importing them this way preprocesses them automatically, which is useful when using Sass.
 
 To use a stylesheet, simply import it within the pages' `<script>` tag.
+
+## Markdown
+
+mdsvex is a svelte markdown parser that:
+
+- handles converting Markdown to HTML;
+- allows Markdown files to be used as components; and
+- allows the use of Svelte components inside Markdown
+
+In order to use mdsvex inside SvelteKit, it is necessary to install it `npm i -D mdsvex` and configure `svelte.config.js` to use it:
+
+```svelte
+import { mdsvex } from 'mdsvex
+
+const config = {
+    extensions: ['.svelte', '.md' ],
+    preprocess: [
+        mdsvex({
+            extensions: ['.md']
+        })
+    ]
+}
+```
+
+- The `extensions` config property specifies the type of files to treat as components.
+- The `mdsvex()` function preprocesses Markdown to HTML - but only targets `.svx` files by default. It is necessary to modify this, and that is the argument passed into `mdsvex`
+
+`mdsvex` allows us to use Markdown files as pages and even import and use Markdown content inside of other files. This could be useful if interactivity or state were need inside of a markdown file. `mdsvex` also comes with `prism.js` pre-installed, which means it can render syntax highlighting for code blocks.
+
+In order to use a Svelte component inside of a Markdown file, all we need to do is add a `script` tag inside of the Markdown file. 
+
+### Loading Markdown files
+
+In order to keep all Markdown files within a single folder, it is necessary to load all posts using dynamic routing. This allows us to place the Markdown files anywhere in our app folder structure. Every route on the site needs a `+page.svelte` file to render.
+
+In order to dynamically load each Markdown file, we must create a `[slug]` folder inside of `src/routes/blog`. The brackets `[]` are important, as they tell SvelteKit that this route is dynamic and will be used to match any `/blog/*` path except for the root path `/blog` which is handled by the `+page.svelte` file.
+
+To handle the dynamic routing, we need a `load` function.
+
+#### Preloading page data server-side
+
+In SvelteKit, a +page.js file, preloads on the server before the page renders and also runs on the client for hydration purposes if necessary. Every time you load a route in SvelteKit, the router will look for a `+page.js` file at that route. For example, when we navigate to the `/blog` route, SvelteKit will look for a `+page.js` (`+page.ts` for Typescript)file inside of `/blog` to figure out if any content needs to be loaded. If the file exists and exports a `load` function, SvelteKit will run the function server-side before rendering the `+page.svelte` route and will pass the data returned along with this file.
+
+Summary:
+
+- `+page.ts` exports a `load` function that attempts to load the Markdown file corresponding to the current route.
+- We `return` the destructured content (this is a preference, you could just as well return the entire file) with the data we are going to use, which will  be available in our post template.
+- `.metadata` contains all the post's frontmatter properties, and `.default` contains the content itself.
+
+Now we can add a `+page.svelte` file inside of the `[slug]` directory. The data from the `load` function is automatically available as the `data` prop. We need to export that props inside of a `script` tag to pass it in and then use it.
+
+`<svelte:component>` is a dynamic component; which means it renders an arbitrary Svelte component provided as the value of the `this` property. This works because we previously told SvelteKit (in our `svelte.config.js` file) to treat `.md` files as components.
+
+**NOTE** If you choose to destructure the loaded object inside of `blog/[slug]/+page.svelte`, it is important to **capitalize** the content property, both in the template and in the data returned from the `load` function (both inside the `+page.svelte` page, not in the `load` function itself). This lets SvelteKit know that `Content` is a component.
+
+## SvelteKit server routes
+
+SvelteKit offers `server routes`, which can be thought of as API endpoints. They work the same way as pages, but instead of returning HTML, they return data.
+
+3 important conventions to follow when creating a server route:
+
+1. A server route file **must be named `+server.js`**.
+2. `+server.js` should export a function named for each HTTP verb it responds to.
+3. Server routes must return a new `Response` object.
+
+### A server for our blog's index
+
+Because it is likely that the posts we are using will be used in multiple places, we need to build an API endpoint for them. To do this, we need to create an `api` folder inside of the `src` directory. We'll add a `posts` directory and inside it a `server.ts` file.
+
+Inside the `server.ts` function, we declare a `GET` function which will handle the retrieval of all posts. It is important to know that the `GET` function exposes headers, query parameters and other useful information about the `request` object.
+
+In order to fetch the Markdown files we need to fetch them. To do this, we will create a `utils` directory inside of `src/lib` and create an `index.ts` file inside of it (i.e., `src/lib/utils`). 
