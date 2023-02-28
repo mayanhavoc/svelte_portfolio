@@ -1,15 +1,8 @@
 <script lang='ts'>
-    interface PostMetadata {
-        title: string;
-        date: string;
-    }
-
-    interface Post {
-        meta: PostMetadata;
-        path: string;
-    }[]
-
+    import type { Post } from "$lib/types/interfaces";
+    
     export let data: { posts: Post[] };
+
 </script>
 
 <h1>Blog</h1>
