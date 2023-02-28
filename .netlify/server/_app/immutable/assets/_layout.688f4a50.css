@@ -1,0 +1,60 @@
+header.svelte-1a0zuj1{padding:2rem 5rem;display:flex;flex-wrap:wrap;justify-content:space-between}ul.svelte-1a0zuj1{margin:0;list-style-type:none;display:flex;gap:1rem}a.svelte-1a0zuj1{text-decoration:none;color:inherit}footer.svelte-4xv6fv{padding:2rem 5rem;display:flex;flex-wrap:wrap;justify-content:space-between}ul.svelte-4xv6fv{margin:0;list-style-type:none;display:flex;gap:1rem}a.svelte-4xv6fv{text-decoration:none;color:inherit}html,
+body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+footer {
+  flex: none;
+}
+
+main {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  flex: auto;
+  max-width: 40rem;
+  padding: 1rem;
+  margin: 2rem auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 40rem;
+  height: 100%;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.tagline {
+  margin: 0;
+  padding: 0;
+}
+
+:where(h2, h3, h4, h5, h6) .icon-link {
+  position: relative;
+}
+:where(h2, h3, h4, h5, h6) .icon-link::before {
+  content: "#";
+  position: absolute;
+  left: -1ch;
+  top: 0;
+  line-height: 1;
+  opacity: 0;
+  text-decoration: underline;
+}
+:where(h2, h3, h4, h5, h6):hover .icon-link::before {
+  opacity: 1;
+}
