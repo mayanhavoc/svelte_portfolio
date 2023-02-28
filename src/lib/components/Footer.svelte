@@ -1,6 +1,6 @@
 <style>
     footer {
-        padding: 1rem;
+        padding: 2rem 5rem;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
