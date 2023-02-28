@@ -1,7 +1,8 @@
+// import adapter from '@sveltejs/adapter-auto';
 // Change the auto adapter to static in order to automatically pre-render site
 // import adapter from '@sveltejs/adapter-static'
-import adapter from '@sveltejs/adapter-auto';
 
+import adapter from '@sveltejs/adapter-netlify';
 import { mdsvex } from 'mdsvex';
 import sveltePreprocess from 'svelte-preprocess';
 import { vitePreprocess } from '@sveltejs/kit/vite';
@@ -36,7 +37,16 @@ const config = {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
-		adapter: adapter()
+		adapter: adapter({
+			// if true, will create a Netlify Edge Function rather
+      		// than using standard Node-based functions
+      		edge: false,
+				
+      		// if true, will split your app into multiple functions
+      		// instead of creating a single one for the entire app.
+      		// if `edge` is true, this option cannot be used
+      		split: false
+		})
 	}
 };
 
