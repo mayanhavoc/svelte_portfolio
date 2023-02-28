@@ -118,3 +118,22 @@ Because it is likely that the posts we are using will be used in multiple places
 Inside the `server.ts` function, we declare a `GET` function which will handle the retrieval of all posts. It is important to know that the `GET` function exposes headers, query parameters and other useful information about the `request` object.
 
 In order to fetch the Markdown files we need to fetch them. To do this, we will create a `utils` directory inside of `src/lib` and create an `index.ts` file inside of it (i.e., `src/lib/utils`). 
+
+We can use a `+page.ts` file with a `load` function to fetch our API data the same way we used it for the blog index.
+
+The `load` function has contextual access to the following arguments:
+
+- `url` and `params`, which contain info about the `request` object;
+- `fetch`, which is a helper to normalize the `fetch` implementation
+
+The `load` function returns an object which will be available as `data`.
+
+Because `+page.ts` runs both on server and client side, it shouldn't reference environment specific things like the `window` or `process`. If we widh to run the `load` function **only** on the server, use `+page.server.ts` instead, but note that it has `fetch` available natively.
+
+Once we've created our `load` function for our blog index, the posts will be passed to the component as `data` and we can loop over it to render posts in the corresponding `+page.svelte` file.
+
+SvelteKit is server-rendered by default and static file prerendering is opt-in so we can pre-render static pages like an about or FAQ (which normally don't have any dynamic content). We can also prerender at the layout level, to handle whole directories once. This is done by exporting a `prerender` constant and setting it to `true`.
+
+If we want to prerender our whole site, we can use SvelteKit's static adapter (this avoids having to keep track of which routes are and aren't set to pre-render based on code). In order to use static pre-rendering, we must install `adapter-static` from SvelteKit with `npm i -D @sveltejs/adapter-static` and replace the `adapter-auto` in `svelte.config.js` to the static adapter we just installed with `import adapter from '@sveltejs/adapter-static`. Then we need to tell our routes to prerender by exporting a `prerender` prop and setting it to `true`.
+
+To avoid setting the `prerender:true` in each page, we can create a `+layout.ts` file in `scr/routes` and add the prop there. The `+layout.svelte` file handles the layout on every page, while the `+layout.ts` file handles server-side scripting for every page. 
