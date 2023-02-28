@@ -9,7 +9,6 @@ export const load = async ({ fetch, params }: {fetch: any, params: LoadParams })
 
         const posts: Post[] = allPosts
             .filter(post => post.meta.categories.includes(category));
-            console.log(posts);
         return {
             category,
             posts
