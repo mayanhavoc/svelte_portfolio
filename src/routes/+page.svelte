@@ -1,2 +1,4 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="container">
+    <h1>Embrace the blockchain</h1>
+    <p class="tagline">Web 3 and smart contract solutions</p>
+</div>
