@@ -4,6 +4,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        font-family: var(--secondary-font);
     }
 
     ul {
@@ -24,6 +25,9 @@
     <ul>
         <li>
           <a href="/about">About</a>
+        </li>
+        <li>
+          <a href="/about">Work</a>
         </li>
         <li>
           <a href="/blog">Blog</a>
