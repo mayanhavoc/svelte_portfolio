@@ -21,7 +21,6 @@
                     {post.meta.title}
                 </a>
             </h2>
-            <p class="paragraph">No. {post.meta.id}</p>
             <p class="paragraph">Published {post.meta.date}</p>
         </li>
         {/each}

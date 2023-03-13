@@ -16,7 +16,14 @@
     }
 </style>
 
+<script>
+    import About from './about/+page.svelte'
+    import Work from './work/+page.svelte'
+</script>
+
 <div class="hero">
     <h1 class="heading">Embrace the blockchain</h1>
     <p class="tagline">Web 3 and smart contract solutions</p>
 </div>
+<About />
+<Work />

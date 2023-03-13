@@ -16,9 +16,6 @@
                 <li class="list__item">
                     <a class="item__link" href="">Treasury and Escrow</a>
                 </li>
-                <li class="list__item">
-                    <a class="item__link" href="">Voting system</a>
-                </li>
             </ul>
         </li>
         <li>
