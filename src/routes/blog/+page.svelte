@@ -11,7 +11,8 @@
 
 <div class="container">
     <h1 class="heading">Blog</h1>
-    
+    <hr>
+    <br>
     {#if data.posts && data.posts.length > 0}
     <ul class="list">
         {#each data.posts as post}

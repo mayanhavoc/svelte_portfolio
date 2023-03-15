@@ -3,6 +3,7 @@
     import Footer from '$lib/components/Footer.svelte';
     import '$lib/components/styles/style.css';
     import { fade } from 'svelte/transition';
+    import 'iconify-icon';
     export let data;
 </script>
 
