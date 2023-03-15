@@ -4,8 +4,10 @@
 
 <div class="container">
     <h1 class="heading">Work</h1>
-    <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, pariatur.Lorem ipsum dolor sit amet</p>
-    
+    <hr>
+    <br>
+    <p class="paragraph">These are some of the projects I've been working on.</p>
+    <br>
     <ul class="list">
         <li class="list__item">
             <h2 class="sub-heading">Blockchain</h2>
@@ -18,6 +20,7 @@
                 </li>
             </ul>
         </li>
+        <br>
         <li>
             <h2 class="sub-heading">Web3</h2>
             <ul class="list">
@@ -26,6 +29,7 @@
                 </li>
             </ul>
         </li>
+        <br>
         <li>
             <h2 class="sub-heading">Web2</h2>
             <ul class="list">

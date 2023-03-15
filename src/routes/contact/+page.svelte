@@ -4,5 +4,5 @@
 
 
 <div class="container">
-    <h1 class="heading">Contact page</h1>
+    <h1 class="heading">Contact</h1>
 </div>

@@ -16,11 +16,11 @@
     <ul class="list">
         {#each data.posts as post}
         <li class="list__item">
-            <h2 class="sub-heading">
-                <a class="item__link" href={post.path}>
+            <a class="item__link" href={post.path}>
+                <h2 class="sub-heading">
                     {post.meta.title}
-                </a>
-            </h2>
+                </h2>
+            </a>
             <p class="paragraph">Published {post.meta.date}</p>
         </li>
         {/each}

@@ -1,51 +1,62 @@
+<script>
+    let navVisible = false;
+
+    function toggleNav(){
+        navVisible = !navVisible;
+    }
+
+    function closeNav(){
+        setTimeout(() => {
+            navVisible = false;
+        }, 300)
+    }
+
+</script>
+
 <style>
+
     header {
-      padding: 1.5em 0;
-      background: var(--background-color);
-      position: fixed;
-      text-align: center;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      font-family: var(--secondary-font);
+        padding: 1rem 0;
+        position: fixed;
+        background-color: var(--background-color);
+        font-family: var(--primary-font);
+        font-size: var(--x-small);
+        text-align: center;
     }
 
     .nav__container {
-        width: 80%;
+        width: 90%;
         max-width: 1200px;
         margin: 0 auto;
         position: relative;
-    }
-
-    .nav__tagline {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 3.5rem;
-        padding-top: 0.5rem;
-        font-size: 1em;
-        font-weight: 900;
-        text-transform: capitalize;
+        color: var(--highlight-color);
     }
 
     .nav {
         visibility: hidden;
         height: 0;
         position: relative;
+        z-index: 0;
     }
 
     .nav--visible {
         visibility: visible;
         height: auto;
         position: relative;
+        transition: 0.5s ease-in-out;
+        z-index: 1;
+    }
+
+    .nav__tagline {
+        color: var(--highlight-color);
+        display: inline-block;
+        width: 100vw;
     }
     
     .nav__list {
       margin: 0 auto;
+      padding: 1rem 0;
       list-style: none;
-      display: flex;
       gap: 1rem;
     }
 
@@ -55,11 +66,7 @@
     
     .nav__link {
       text-decoration: none;
-      color: var(--font-color);
-    }
-
-    .nav__link--button {
-        padding: .25em 1em;
+      color: var(--highlight-color);
     }
 
     .nav__link:hover,
@@ -77,7 +84,6 @@
         transition: opacity 250ms ease;
         position: absolute;
         left: 0;
-        margin-top: 0.5rem;
         background: var(--font-color)
     }
 
@@ -114,13 +120,11 @@
         transform: translateY(3px);
     }
 
-    .nav--logo {
-        height: 70px;
-    }
 
-    @media (min-width: 600px) {
-        .nav__item + .nav__item {
-            margin-left: 1em;
+    @media (min-width: 800px) { 
+
+        header {
+            width: 100%;
         }
 
         .nav-toggle {
@@ -131,18 +135,18 @@
             visibility: visible;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
             position: relative;
             height: auto;
         }
 
         .nav__list {
             display: flex;
-            margin: 0;
+            margin: 0 auto;
         }
     
-        .nav__list--primary {
-          margin: 0 auto;
+        .nav__tagline {
+            display: block;
+            width: 30vw;
         }
 
         .nav__item {
@@ -159,38 +163,36 @@
 
 <header>
   <div class="nav__container row">
-      <button class="nav-toggle" aria-label="open navigation">
+      <button class="nav-toggle" aria-label="open navigation" on:click={toggleNav}>
           <span class="hamburger"></span>
       </button>
       <a class="nav__link" href="/">
-        <div class="nav__tagline">
-            <p class="paragraph">Embrace the blockchain</p>
-        </div>
+            <p class="nav__tagline">Embrace the blockchain</p>
       </a>
-      <nav class="nav">
+      <nav class={navVisible ? 'nav--visible' : 'nav'}>
           <ul class="nav__list">
               <li class="nav__item">
-                  <a href="/" class="nav__link">
+                  <a href="/" class="nav__link" on:click={closeNav}>
                       Home
                   </a>
               </li>
               <li class="nav__item">
-                  <a href="/about" class="nav__link">
+                  <a href="/about" class="nav__link" on:click={closeNav}>
                       About
                   </a>
               </li>
               <li class="nav__item">
-                  <a href="/work" class="nav__link">
+                  <a href="/work" class="nav__link" on:click={closeNav}>
                       Work
                   </a>
               </li>
               <li class="nav__item">
-                  <a href="/blog" class="nav__link">
+                  <a href="/blog" class="nav__link" on:click={closeNav}>
                       Blog
                   </a>
               </li>
               <li class="nav__item">
-                  <a href="/contact" class="nav__link">
+                  <a href="/contact" class="nav__link" on:click={closeNav}>
                       Contact
                   </a>
               </li>

@@ -14,11 +14,19 @@
         padding: 0 1em;
         position: relative;
     }
+    @media (min-width: 600px){
+        .hero {
+            max-width: 85%;
+        }
+    }
 </style>
 
-<script>
+<script lang="ts">
+    import type { Post } from "$lib/types/interfaces";
     import About from './about/+page.svelte'
     import Work from './work/+page.svelte'
+    import Blog from './blog/+page.svelte'
+    export let data: { posts: Post[]};
 </script>
 
 <div class="hero">
@@ -27,3 +35,4 @@
 </div>
 <About />
 <Work />
+<Blog data={data} />

@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400&family=Rubik+Mono+One&display=swap');
+
 :root {
-    --primary-font: serif;
-    --secondary-font: sans-serif;
+    --primary-font: 'Rubik Mono One', sans-serif;
+    --secondary-font: 'Roboto', sans-serif;    
     --large: 3em;
     --medium: 2em; 
+    --medium-small: 1.5em;
     --small: 1em;
-    --nav__tagline: 1.5em;
-    --background-color: #f5d5d5;
-    --font-color: #444;
+    --x-small: 0.75em;
+    --background-color: #020101;
+    --font-color: #F0EBD1;
+    --highlight-color: #FFDA20;
 }
 
 *,
@@ -26,7 +30,7 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--font-color);
 }
 
@@ -39,9 +43,9 @@ img {
     max-width: 100%;
 }
 
+
 main {
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
     flex: auto;
     max-width: 75rem;
     padding: 1rem;
@@ -49,14 +53,10 @@ main {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 40rem;
-    padding: 0 2rem;
-    margin: 5em auto;
-    position: relative;
+    max-width: 50rem;
+    margin: 5em 2em;
 }
+
 
 .heading, .sub-heading, .tagline, .paragraph {
     margin: 0;
@@ -64,26 +64,42 @@ main {
 }
 
 .heading {
-    font-size: var(--large);
-}
-
-.tagline {
-    font-size: var(--small);
+    font-size: var(--medium);
+    font-family: var(--primary-font);
 }
 
 .sub-heading {
     font-size: var(--medium);
+    font-family: var(--secondary-font);
+    color: var(--highlight-color);
+    font-weight: bold;
 }
 
-.paragraph {
-    font-size: var(--small);
+.tagline {
+    margin: 0;
+    padding: 0;
     font-family: var(--secondary-font);
+    text-transform: uppercase;
+}
+
+
+.paragraph {
+    font-size: var(--medium-small);
+    font-family: var(--secondary-font);
+    letter-spacing: 0.125vw;
 }
 
 .list {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.list__heading {
+    margin: 0;
+    padding: 0;
+    font-size: var(--list-heading);
+    font-family: var(--secondary-font);
 }
 
 .list__item {
@@ -93,9 +109,8 @@ main {
 .item__link {
     cursor: pointer;
     text-decoration: none;
-    margin: 0;
-    padding: 0;
     color: var(--font-color);
+    font-family: var(--secondary-font);
 }
 
 
@@ -116,5 +131,14 @@ main {
 
     &:hover .icon-link::before {
         opacity: 1;
+    }
+}
+
+@media (min-width: 600px){
+    .heading {
+        font-size: var(--x-large);
+    }
+    .tagline {
+        font-size: var(--medium);
     }
 }
