@@ -102,8 +102,9 @@ main {
 .list__heading {
     margin: 0;
     padding: 0;
-    font-size: var(--list-heading);
+    font-size: var(--medium);
     font-family: var(--secondary-font);
+    color: var(--highlight-color);
 }
 
 .list__item {
@@ -139,10 +140,6 @@ main {
 }
 
 @media (min-width: 600px){
-    main {
-        width: 90vw;
-    }
-
     .heading {
         font-size: var(--large);
     }

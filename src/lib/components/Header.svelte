@@ -14,22 +14,14 @@
 </script>
 
 <style>
-
     header {
         padding: 1rem 0;
         position: fixed;
         background-color: var(--background-color);
         font-family: var(--primary-font);
-        font-size: var(--x-small);
+        font-size: var(--small);
         text-align: center;
-    }
-
-    .nav__container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        color: var(--highlight-color);
+        z-index: 1;
     }
 
     .nav {
@@ -38,6 +30,15 @@
         position: relative;
         z-index: 0;
     }
+    
+    .nav__container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        color: var(--highlight-color);
+    }
+
 
     .nav--visible {
         visibility: visible;
@@ -48,9 +49,7 @@
     }
 
     .nav__tagline {
-        color: var(--highlight-color);
-        display: inline-block;
-        width: 100vw;
+        margin-left: 30%;
     }
     
     .nav__list {
@@ -145,8 +144,7 @@
         }
     
         .nav__tagline {
-            display: block;
-            width: 30vw;
+            margin: 0;
         }
 
         .nav__item {

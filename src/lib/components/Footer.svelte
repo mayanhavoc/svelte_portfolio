@@ -16,6 +16,12 @@
       color: var(--highlight-color);
     }
 
+    .quote {
+      font-size: var(--small);
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
     ul {
         margin: 0;
         list-style-type: none;
@@ -34,12 +40,16 @@
         justify-content: space-between;
         align-items: center;
       }
+      .quote {
+        font-size: var(--medium-small);
+      }
     }
 </style>
 
 <footer>
     <div class="footer__container row">
-      <a href="/">Home</a>
+      <p class="paragraph quote">"We must make the building of a free society once more an intellectual adventure, a deed of courage." - Ludwig Von Hayek</p>
+      <!-- <a href="/">Home</a>
       <ul>
           <li>
             <a href="/about">About</a>
@@ -53,6 +63,6 @@
           <li>
             <a href="/contact">Contact</a>
           </li>
-      </ul>
+      </ul> -->
     </div>
 </footer>

@@ -13,6 +13,7 @@
         margin: 0 auto;
         padding: 0 1em;
         position: relative;
+        z-index: 0;
     }
 
     @media (min-width: 600px){
