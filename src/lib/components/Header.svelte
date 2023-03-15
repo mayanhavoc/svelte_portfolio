@@ -83,7 +83,8 @@
         transition: opacity 250ms ease;
         position: absolute;
         left: 0;
-        background: var(--font-color)
+        background: var(--font-color);
+        z-index: 2;
     }
 
     .nav-toggle:focus,
