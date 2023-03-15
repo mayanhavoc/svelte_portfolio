@@ -14,9 +14,13 @@
         padding: 0 1em;
         position: relative;
     }
+
     @media (min-width: 600px){
         .hero {
-            max-width: 85%;
+            max-width: 100vw;
+        }
+        .hero .heading {
+            font-size: var(--medium);
         }
     }
 </style>

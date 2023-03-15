@@ -66,6 +66,7 @@ main {
 .heading {
     font-size: var(--medium);
     font-family: var(--primary-font);
+    letter-spacing: 1.1px;
 }
 
 .sub-heading {
@@ -79,6 +80,9 @@ main {
     margin: 0;
     padding: 0;
     font-family: var(--secondary-font);
+    color: var(--highlight-color);
+    font-weight: 900;
+    letter-spacing: 1.1px;
     text-transform: uppercase;
 }
 
@@ -135,8 +139,12 @@ main {
 }
 
 @media (min-width: 600px){
+    main {
+        width: 90vw;
+    }
+
     .heading {
-        font-size: var(--x-large);
+        font-size: var(--large);
     }
     .tagline {
         font-size: var(--medium);
