@@ -3,12 +3,15 @@
 </svelte:head>
 
 <style>
+  .contact {
+    padding-top: 5em;
+  }
   .paragraph {
     font-size: 1.25em;
   }
 </style>
 
-<div class="container">
+<div class="contact container">
   <h1 class="heading">Get in touch</h1>
   <hr>
   <br>

@@ -1,201 +1,169 @@
 <script>
-    let navVisible = false;
+    import { onMount, onDestroy } from 'svelte';
 
-    function toggleNav(){
-        navVisible = !navVisible;
-    }
+    let isOpen = false;
+    let bar1Class = '';
+    let bar2Class = '';
+    let bar3Class = '';
+  
+    const toggleHamburger = () => {
+      isOpen = !isOpen;
+      setAnimationClasses();
+    };
+  
+    const setAnimationClasses = () => {
+      if (isOpen) {
+        bar1Class = 'animateBar1';
+        bar2Class = 'animateBar2';
+        bar3Class = 'animateBar3';
+      } else {
+        bar1Class = '';
+        bar2Class = '';
+        bar3Class = '';
+      }
+    };
 
-    function closeNav(){
-        setTimeout(() => {
-            navVisible = false;
-        }, 300)
-    }
-
-</script>
+  onMount(() => {
+    window.addEventListener('click', (event) => {
+      if (!event.target.closest('.hamburger')) {
+        isOpen = false;
+        setAnimationClasses();
+      }
+    });
+  });
+  </script>
+  
 
 <style>
-    header {
-        padding: 1rem 0;
-        position: fixed;
-        background-color: var(--background-color);
-        font-family: var(--primary-font);
-        font-size: var(--small);
-        text-align: center;
-        z-index: 1;
-    }
-
-    .nav {
-        visibility: hidden;
-        height: 0;
-        position: relative;
-        z-index: 0;
-    }
-    
-    .nav__container {
-        width: 90%;
-        max-width: 1200px;
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 2em 1rem;
         margin: 0 auto;
-        position: relative;
-        color: var(--highlight-color);
-    }
-
-
-    .nav--visible {
-        visibility: visible;
-        height: auto;
-        position: relative;
-        transition: 0.5s ease-in-out;
-        z-index: 1;
-    }
-
-    .nav__tagline {
-        margin-left: 30%;
-    }
-    
-    .nav__list {
-      margin: 0 auto;
-      padding: 1rem 0;
-      list-style: none;
-      gap: 1rem;
-    }
-
-    .nav__item {
-        margin-top: 1rem;
-    }
-    
-    .nav__link {
-      text-decoration: none;
-      color: var(--highlight-color);
-    }
-
-    .nav__link:hover,
-    .nav__link:focus {
-        opacity: 0.75;
-    }
-
-    .nav-toggle {
-        cursor: pointer;
-        border: 0;
-        border-radius: 100%;
-        width: 3rem;
-        height: 3rem;
-        padding: 0em;
-        transition: opacity 250ms ease;
-        position: absolute;
-        left: 0;
-        background: var(--font-color);
-        z-index: 2;
-    }
-
-    .nav-toggle:focus,
-    .nav-toggle:hover {
-        opacity: 0.75;
-    }
-
-    .hamburger {
-        width: 50%;
-        position: relative;
-    }
-
-    .hamburger,
-    .hamburger::before,
-    .hamburger::after {
-        display: block;
-        margin: 0 auto;
-        height: 3px;
-        background: var(--background-color);
-    }
-
-    .hamburger::before,
-    .hamburger::after {
-        content: "";
+        max-width: 90%;
         width: 100%;
     }
 
-    .hamburger::before {
-        transform: translateY(-6px);
+    .navbar .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: var(--small);
+        font-family: var(--primary-font);
+        width: 100%;
     }
 
-    .hamburger::after {
-        transform: translateY(3px);
+    .navbar .left a {
+        text-decoration: none;
+        color: var(--font-color);
+    }
+
+    .navbar .left a:hover {
+        color: var(--highlight-color);
+    }
+
+    .navbar .right {
+        display: none;
+        
+    }
+
+    .navbar .right a {
+        text-decoration: none;
+        color: var(--font-color);
+    }
+
+    .navbar .right a:hover {
+        text-decoration: underline;
+    }
+
+    .navbar .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 36px;
+    }
+
+    .navbar .bar {
+        background-color: var(--font-color);
+        height: 3px;
+        width: 100%;
+        margin: 3px;
+    }
+
+    .animateBar1 {
+        animation: flipBar1 1s;
+        animation-fill-mode: forwards;
+    }
+    .animateBar2 {
+        animation: fadeBar2 1s;
+        animation-fill-mode: forwards;
+    }
+    .animateBar3 {
+        animation: flipBar3 1s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeBar2 {
+        from {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+        to {
+            transform: scaleX(0);
+            opacity: 0;
+        }
     }
 
 
-    @media (min-width: 800px) { 
-
-        header {
-            width: 100%;
+    @keyframes flipBar1 {
+        from {
+            transform: rotate(0)
         }
-
-        .nav-toggle {
-            display:none;
+        to {
+            transform: rotate(45deg) translate(3px, 9px); 
         }
+    
+    }
+    @keyframes flipBar3 {
+        from {
+            transform: rotate(0)
+        }
+        to {
+            transform: rotate(-45deg) translate(3px, -9px);
+        }
+    }
 
-        .nav {
-            visibility: visible;
+    @media (min-width: 768px){
+        .navbar .right {
+            width: 25em;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            position: relative;
-            height: auto;
+            font-family: var(--secondary-font);
         }
 
-        .nav__list {
-            display: flex;
-            margin: 0 auto;
-        }
-    
-        .nav__tagline {
-            margin: 0;
-        }
-
-        .nav__item {
-          margin: 0 0 0 1.5em;
-        }
-    
-        .row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+        .navbar .hamburger {
+            display: none;
         }
     }
 </style>
 
-<header>
-  <div class="nav__container row">
-      <button class="nav-toggle" aria-label="open navigation" on:click={toggleNav}>
-          <span class="hamburger"></span>
-      </button>
-      <a class="nav__link" href="/">
-            <p class="nav__tagline">Embrace the blockchain</p>
-      </a>
-      <nav class={navVisible ? 'nav--visible' : 'nav'}>
-          <ul class="nav__list">
-              <li class="nav__item">
-                  <a href="/" class="nav__link" on:click={closeNav}>
-                      Home
-                  </a>
-              </li>
-              <li class="nav__item">
-                  <a href="/about" class="nav__link" on:click={closeNav}>
-                      About
-                  </a>
-              </li>
-              <li class="nav__item">
-                  <a href="/work" class="nav__link" on:click={closeNav}>
-                      Work
-                  </a>
-              </li>
-              <li class="nav__item">
-                  <a href="/blog" class="nav__link" on:click={closeNav}>
-                      Blog
-                  </a>
-              </li>
-              <li class="nav__item">
-                  <a href="/contact" class="nav__link" on:click={closeNav}>
-                      Contact
-                  </a>
-              </li>
-          </ul>
-      </nav>
+<header class='navbar'>
+  <div class="left">
+    <a href="/">Roberto Mayen</a>
+</div>
+  <nav class="right">
+    <a href="/about">About</a>
+    <a href="/work">Work</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <div class="hamburger" on:click={toggleHamburger}>
+    <div class="bar bar1" class:animateBar1={bar1Class}></div>
+    <div class="bar bar2" class:animateBar2={bar2Class}></div>
+    <div class="bar bar3" class:animateBar3={bar3Class}></div>
   </div>
 </header>

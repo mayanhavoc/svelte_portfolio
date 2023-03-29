@@ -7,22 +7,32 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: start;
         height: 100%;
-        max-width: 75rem;
-        margin: 0 auto;
+        margin-bottom: 1em;
         padding: 0 1em;
         position: relative;
         z-index: 0;
     }
 
-    @media (min-width: 600px){
-        .hero {
-            max-width: 100vw;
-        }
-        .hero .heading {
-            font-size: var(--medium);
-        }
+    .contact-btn {
+        margin: 2em 0;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        text-decoration: none;
+        background-color: var(--highlight-color);
+        font-size: var(--small);
+        font-family: var(--secondary-font);
+        cursor: pointer;
+    }
+
+    .contact-btn .contact-link {
+        text-decoration: none;
+        color: var(--background-color);
+    }
+
+    .contact-btn:hover {
+        transform: scale(1.2);
+        background:var(--font-color);
     }
 </style>
 
@@ -35,9 +45,13 @@
 </script>
 
 <div class="hero">
-    <h1 class="heading">Embrace the blockchain</h1>
-    <p class="tagline">Web 3 and smart contract solutions</p>
+        <div class="container">
+        <h1 class="heading">Roberto Mayen</h1>
+        <p class="tagline">Web3 and Full Stack Development</p>
+        <button class="contact-btn">
+            <a href="/contact" class="contact-link">Get in touch</a>
+        </button>
+    </div>
 </div>
 <About />
 <Work />
-<Blog data={data} />

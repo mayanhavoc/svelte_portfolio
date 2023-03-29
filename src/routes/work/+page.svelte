@@ -2,7 +2,14 @@
     <title>Work - Embrace the blockchain</title>
 </svelte:head>
 
-<div class="container">
+<style>
+    .work {
+        padding-top: 5em;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="work container">
     <h1 class="heading">Work</h1>
     <hr>
     <br>
