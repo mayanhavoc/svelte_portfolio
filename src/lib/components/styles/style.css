@@ -17,6 +17,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html, 
@@ -34,27 +36,19 @@ body {
     color: var(--font-color);
 }
 
-header, 
-footer {
-    flex: none;
+main {
+    overflow-y: scroll;
+    flex: auto;
+    padding: 1rem;
 }
 
 img {
     max-width: 100%;
 }
 
-
-main {
-    overflow-y: scroll;
-    flex: auto;
-    max-width: 75rem;
-    padding: 1rem;
-    margin: 2rem auto;
-}
-
 .container {
-    max-width: 50rem;
-    margin: 5em 2em;
+    margin: 0 auto;
+    max-width: 90%;
 }
 
 
@@ -119,27 +113,7 @@ main {
 }
 
 
-:where(h2, h3, h4, h5, h6){
-    .icon-link {
-        position: relative;
-
-        &::before {
-            content: '#';
-            position: absolute;
-            left: -1ch;
-            top: 0;
-            line-height: 1;
-            opacity: 0;
-            text-decoration: underline;
-        }
-    }
-
-    &:hover .icon-link::before {
-        opacity: 1;
-    }
-}
-
-@media (min-width: 600px){
+@media (min-width: 960px){
     .heading {
         font-size: var(--large);
     }

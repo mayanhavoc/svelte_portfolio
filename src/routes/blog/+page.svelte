@@ -9,7 +9,14 @@
     <title>Blog - Embrace the blockchain</title>
 </svelte:head>
 
-<div class="container">
+<style>
+    .blog {
+        margin: 0 auto;
+        padding-top: 5em;
+    }
+</style>
+
+<div class="blog container">
     <h1 class="heading">Blog</h1>
     <hr>
     <br>
