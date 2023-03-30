@@ -1,10 +1,11 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
+    import { onMount } from 'svelte';
 
     let isOpen = false;
     let bar1Class = '';
     let bar2Class = '';
     let bar3Class = '';
+    let drawerClass = '';
   
     const toggleHamburger = () => {
       isOpen = !isOpen;
@@ -16,10 +17,12 @@
         bar1Class = 'animateBar1';
         bar2Class = 'animateBar2';
         bar3Class = 'animateBar3';
+        drawerClass = 'openDrawer';
       } else {
         bar1Class = '';
         bar2Class = '';
         bar3Class = '';
+        drawerClass = '';
       }
     };
 
@@ -93,16 +96,47 @@
     }
 
     .animateBar1 {
-        animation: flipBar1 1s;
+        animation: flipBar1 0.5s;
         animation-fill-mode: forwards;
     }
     .animateBar2 {
-        animation: fadeBar2 1s;
+        animation: fadeBar2 0.5s;
         animation-fill-mode: forwards;
     }
     .animateBar3 {
-        animation: flipBar3 1s;
+        animation: flipBar3 0.5s;
         animation-fill-mode: forwards;
+    }
+
+    .openDrawer {
+        transform: translateX(-150px);
+        transition: all 1s;
+    }
+
+    .mobileNav {
+        width: 150px;
+        height: 300px;
+        background-color: var(--highlight-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 80px;
+        right: -160px;
+        z-index: 2;
+        padding: 1rem;
+    }
+
+    .mobileNav a {
+        text-decoration: none;
+        color: var(--background-color);
+        font-family: var(--secondary-font);
+        margin-top: 1rem;
+    }
+
+    .mobileNav a:hover {
+        text-decoration: underline;
     }
 
     @keyframes fadeBar2 {
@@ -147,6 +181,10 @@
         .navbar .hamburger {
             display: none;
         }
+
+        .mobileNav {
+            display: none;
+        }
     }
 </style>
 
@@ -167,3 +205,10 @@
     <div class="bar bar3" class:animateBar3={bar3Class}></div>
   </div>
 </header>
+<nav class="mobileNav" class:openDrawer={drawerClass}>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/work">Work</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+</nav>
