@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Home - Embrace the blockchain</title>
+    <title>Roberto Mayen - Web3 & Full Stack Development</title>
 </svelte:head>
 
 <style>
